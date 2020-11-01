@@ -2,24 +2,13 @@ const http = require("http");
 
 const { parseParams } = require("./shared/utils");
 
+const routeController = require("./controllers/route.controller");
+
 class HttpModule {
   routes = [];
 
   initialize = () => {
-    this.register("get", "/", (req, res) => {
-      console.log(req.query);
-      res.status(200).json({
-        message: "Olá mundo",
-      });
-    });
-
-    this.register("post", "/", (req, res) => {
-      console.log(req.body);
-      console.log(req.params);
-      res.status(200).json({
-        message: "Olá mundo",
-      });
-    });
+    this.register("get", "/routes", routeController.show);
 
     http.createServer(this.handle).listen(process.env.PORT || 8000);
   };
