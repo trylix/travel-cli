@@ -1,7 +1,8 @@
-const chai = require("chai"),
-  sinon = require("sinon"),
-  fileService = require("./file.service"),
-  expect = chai.expect;
+const chai = require("chai");
+const sinon = require("sinon");
+const fileService = require("./file.service");
+
+const { expect } = chai;
 
 chai.use(require("sinon-chai"));
 

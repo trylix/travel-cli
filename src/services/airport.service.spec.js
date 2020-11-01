@@ -1,6 +1,6 @@
-const chai = require("chai"),
-  airportService = require("./airport.service"),
-  assert = chai.assert;
+const chai = require("chai");
+const airportService = require("./airport.service");
+const { assert } = chai;
 
 describe('testing airport service"', () => {
   it("register new airport", () => {
