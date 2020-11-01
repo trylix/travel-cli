@@ -1,5 +1,8 @@
 const readline = require("readline");
 
+const { parseRoute } = require("../shared/utils");
+const routeService = require("./route.service");
+
 class CommandService {
   constructor() {
     this.cmd = readline.createInterface({
@@ -10,7 +13,12 @@ class CommandService {
 
   startCommandLine = () => {
     this.cmd.question("please enter the route:", (route) => {
-      console.log("best route: **melhor rota**");
+      const [origin, destination] = parseRoute(route);
+      const bestRoute = routeService.getBestRoute({ origin, destination });
+
+      console.log(
+        `best route: ${bestRoute.connections.join(" - ")} > \$${bestRoute.cost}`
+      );
 
       this.startCommandLine();
     });
