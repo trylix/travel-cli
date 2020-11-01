@@ -6,7 +6,19 @@
   "keywords": [],
   "author": "Brendenson <brendensond@gmail.com> (https://github.com/trylix)",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha \"./src/**/*.spec.js*\"",
+    "test:watch": "mocha \"./src/**/*.spec.js*\" --watch"
+  },
   "bin": {
     "travel": "./bin/index.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-subset": "^1.6.0",
+    "mocha": "^8.2.0",
+    "mocha-sinon": "^2.1.2",
+    "sinon": "^9.2.1",
+    "sinon-chai": "^3.5.0"
   }
 }
