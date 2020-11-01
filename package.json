@@ -1,0 +1,12 @@
+{
+  "name": "travel-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "keywords": [],
+  "author": "Brendenson <brendensond@gmail.com> (https://github.com/trylix)",
+  "license": "MIT",
+  "bin": {
+    "travel": "./bin/index.js"
+  }
+}
