@@ -1,7 +1,6 @@
 const path = require("path");
 const fs = require("fs");
 
-const airportService = require("./airport.service");
 const routeService = require("./route.service");
 
 class FileService {
@@ -28,14 +27,10 @@ class FileService {
       lines.forEach((line) => {
         if (line === "") return;
 
-        const [origin, destination, cost] = line.split(",");
+        const [source, destination, cost] = line.split(",");
 
-        [origin, destination].forEach((airport) =>
-          airportService.register(airport)
-        );
-
-        routeService.register({
-          origin,
+        routeService.addRoute({
+          source,
           destination,
           cost,
         });
@@ -44,6 +39,18 @@ class FileService {
       console.error(error);
       process.exit(1);
     }
+  };
+
+  writeToFile = (route) => {
+    const writeStream = fs.createWriteStream(this.filename, {
+      flags: "a",
+    });
+
+    const parseRoute = [route.source, route.destination, route.cost];
+    const newRoute = parseRoute.join(",");
+
+    writeStream.write(`${newRoute}\n`);
+    writeStream.end();
   };
 }
 

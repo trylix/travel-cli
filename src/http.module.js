@@ -9,6 +9,7 @@ class HttpModule {
 
   initialize = () => {
     this.register("get", "/routes", routeController.show);
+    this.register("post", "/routes", routeController.store);
 
     http.createServer(this.handle).listen(process.env.PORT || 8000);
   };

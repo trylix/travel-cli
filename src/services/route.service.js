@@ -3,13 +3,13 @@ class RouteService {
     this.routes = [];
   }
 
-  register = (route) => {
+  addRoute = (route) => {
     if (this.routes.includes(route)) return;
 
     this.routes.push(route);
   };
 
-  getBestRoute = ({ origin, destination }) => {
+  getBestRoute = ({ source, destination }) => {
     function* findPossibleRoutes(nodes, source, destination, connection = []) {
       if (source === destination) {
         yield connection.concat(destination);
@@ -29,14 +29,14 @@ class RouteService {
 
     const nodes = {};
     for (const node of this.routes) {
-      if (!nodes[node.origin]) {
-        nodes[node.origin] = [];
+      if (!nodes[node.source]) {
+        nodes[node.source] = [];
       }
 
-      nodes[node.origin].push(node.destination);
+      nodes[node.source].push(node.destination);
     }
 
-    const possibleRoutes = [...findPossibleRoutes(nodes, origin, destination)];
+    const possibleRoutes = [...findPossibleRoutes(nodes, source, destination)];
 
     const bestRoute = possibleRoutes
       .map((possibleRoute) => {
@@ -48,7 +48,7 @@ class RouteService {
 
           const route = this.routes.find(
             (route) =>
-              route.origin === possibleRoute[i] &&
+              route.source === possibleRoute[i] &&
               route.destination === possibleRoute[next]
           );
 

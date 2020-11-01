@@ -13,8 +13,8 @@ class CommandService {
 
   startCommandLine = () => {
     this.cmd.question("please enter the route:", (route) => {
-      const [origin, destination] = parseRoute(route);
-      const bestRoute = routeService.getBestRoute({ origin, destination });
+      const [source, destination] = parseRoute(route);
+      const bestRoute = routeService.getBestRoute({ source, destination });
 
       console.log(
         `best route: ${bestRoute.connections.join(" - ")} > \$${bestRoute.cost}`
